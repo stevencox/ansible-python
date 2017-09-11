@@ -1,0 +1,7 @@
+---
+# vars file for python
+
+
+python_dir: ""
+python_install_dir: "/usr/local/python"
+

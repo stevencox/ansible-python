@@ -1,0 +1,31 @@
+---
+
+#- name: Add IUM repository
+#  command: yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+
+#  yum:
+#    name: "https://centos7.iuscommunity.org/ius-release.rpm"
+#    state: present
+#    description: Inline w/Upstream Stable YUM repo
+#    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+#    baseurl: https://centos7.iuscommunity.org/ius-release.rpm
+
+- name: Download file with check (md5)
+  get_url:
+    url: https://centos7.iuscommunity.org/ius-release.rpm
+    dest: /tmp/ius-release.rpm
+
+- name: install Visual software
+  yum: pkg={{item}} state=installed
+  become: true
+  with_items:
+    - /tmp/ius-release.rpm
+
+- name: install Visual software
+  yum: pkg={{item}} state=installed
+  become: true
+  with_items:
+    - python36u
+    - python36u-pip
+    - python36u-devel
+
